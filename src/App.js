@@ -51,29 +51,31 @@ class App extends Component {
       <div className="App">
         <Grid fluid style={{border: '1px solid blue'}}>
           <Row>
-            <Col xs={12} style={{border: '1px solid green'}}>
+            <Col xs={12} style={{border: '1px solid blue'}}>
               <Header>
               </Header>
             </Col>
           </Row>
           <Row>
-            <Col xs={6} style={{border: '1px solid red'}}>
+            <Col xs={12} style={{border: '1px solid blue'}}>
               <Current>
               </Current>
             </Col>
-            <Col xs={6} style={{border: '1px solid orange'}}>
+          </Row>
+          <Row>
+            <Col xs={12} style={{border: '1px solid blue'}}>
               <Details>
               </Details>
             </Col>
           </Row>
           <Row>
-            <Col xs={12} style={{border: '1px solid brown'}}>
+            <Col xs={12} style={{border: '1px solid blue'}}>
               <Camera>
               </Camera>
             </Col>
           </Row>
           <Row>
-            <Col xs={12} style={{border: '1px solid brown'}}>
+            <Col xs={12} style={{border: '1px solid blue'}}>
               <Forecast>
               </Forecast>
             </Col>

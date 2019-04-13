@@ -13,15 +13,25 @@ class Current extends Component {
 
       <div className="Current">
         <Row>
-          <Col xs={8} style={{border: '1px solid red'}}>
-            <div className="big-temp">
-              45<span className="wi wi-night-sleet"></span>
+          <Col xs={4} style={{border: '1px solid red'}}>
+            <div className="temp">
+              <span className="big-temp">70</span>
+              <span className="big-temp wi wi-fahrenheit"></span>
+              <p className="hilo-temp">hi: 53ºF lo: 34ºF</p>
             </div>
           </Col>
+
+          <Col xs={4} style={{border: '1px solid green'}}>
+            <div className="weather">
+              <span className="big-temp wi wi-day-sleet-storm"></span>
+              <p>stomy sleet</p>
+            </div>
+          </Col>
+
           <Col xs={4} style={{border: '1px solid orange'}}>
-            <div className="other-temp">
-              hi: 53ºF
-              lo: 34ºF
+            <div className="sun">
+              <p><span className="wi wi-sunrise"></span>07:15 am</p>
+              <p><span className="wi wi-sunset"></span>08:42 pm</p>
             </div>
           </Col>
         </Row>
