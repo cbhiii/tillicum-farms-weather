@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #D9D6CB;
 }
 
 .App-header {
@@ -15,7 +16,16 @@
 }
 
 .Header {
+  font-size: 1.3em;
+  font-weight: bold;
+}
 
+.header-left {
+  text-align: left;
+}
+
+.header-right {
+  text-align: right;
 }
 
 .Current {
@@ -23,34 +33,45 @@
 }
 
 .temp {
-  padding-top: 10;
-  padding-bottom: 10;
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 .big-temp {
-  font-size: 3em;
+  font-size: 4em;
   font-weight: bold;
 }
 
 .hilo-temp {
-  font-size: 1em;
+  font-size: 1.3em;
+  font-weight: bold;
   margin: 0;
   padding: 0;
 }
 
 .weather {
-  font-size: 1em;
+  font-size: 1.1em;
   position: relative;
-  top: 16px;
+  /* shift down weather icon for centering */
+  top: 20px;
+  padding: 10px;
 }
 
-.sun {
+.weather-text {
   font-size: 1em;
+  font-weight: bold;
 }
 
 .Details {
 
 }
+
+.sun {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: left;
+}
+
 
 .Camera {
 

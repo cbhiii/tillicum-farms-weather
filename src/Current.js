@@ -3,7 +3,6 @@
 
 import React, { Component } from 'react';
 import { Row, Col } from 'react-flexbox-grid';
-import './App.css';
 
 class Current extends Component {
 
@@ -13,25 +12,17 @@ class Current extends Component {
 
       <div className="Current">
         <Row>
-          <Col xs={4} style={{border: '1px solid red'}}>
+          <Col xs={6}>
             <div className="temp">
-              <span className="big-temp">70</span>
-              <span className="big-temp wi wi-fahrenheit"></span>
-              <p className="hilo-temp">hi: 53ºF lo: 34ºF</p>
+              <span className="big-temp">70º</span>
+              <p className="hilo-temp"><span className="wi wi-direction-up"></span> 83º <span className="wi wi-direction-down"></span> 54º</p>
             </div>
           </Col>
 
-          <Col xs={4} style={{border: '1px solid green'}}>
+          <Col xs={6}>
             <div className="weather">
-              <span className="big-temp wi wi-day-sleet-storm"></span>
-              <p>stomy sleet</p>
-            </div>
-          </Col>
-
-          <Col xs={4} style={{border: '1px solid orange'}}>
-            <div className="sun">
-              <p><span className="wi wi-sunrise"></span>07:15 am</p>
-              <p><span className="wi wi-sunset"></span>08:42 pm</p>
+              <span className="big-temp wi wi-day-cloudy-windy"></span>
+              <p className="weather-text">Windy and cloudy</p>
             </div>
           </Col>
         </Row>

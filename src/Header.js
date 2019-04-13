@@ -2,7 +2,7 @@
 // 20190406, Chuck Huffman
 
 import React, { Component } from 'react';
-import './App.css';
+import { Row, Col } from 'react-flexbox-grid';
 
 class Header extends Component {
 
@@ -11,7 +11,14 @@ class Header extends Component {
     return (
 
       <div className="Header">
-        Header
+        <Row>
+          <Col className="header-left" xs={8}>
+            Tillicum Farms Weather
+          </Col>
+          <Col className="header-right" xs={4}>
+            11:38 am
+          </Col>
+        </Row>
       </div>
 
     );
