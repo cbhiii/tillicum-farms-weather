@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 // import convert from 'xml-js';
 import './App.css';
+import './assets/weather-icons.css';
 import data from './data.xml';
 import Header from './Header'
 import Current from './Current'
