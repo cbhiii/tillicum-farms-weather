@@ -21,8 +21,7 @@ class Current extends Component {
 
           <Col xs={6}>
             <div className="weather">
-              <span className="big-temp wi wi-day-cloudy-windy"></span>
-              <p className="weather-text">Windy and cloudy</p>
+              <span className="big-temp wi wi-day-thunderstorm"></span>
             </div>
           </Col>
         </Row>

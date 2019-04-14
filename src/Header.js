@@ -12,11 +12,8 @@ class Header extends Component {
 
       <div className="Header">
         <Row>
-          <Col className="header-left" xs={8}>
+          <Col xs={12}>
             Tillicum Farms Weather
-          </Col>
-          <Col className="header-right" xs={4}>
-            11:38 am
           </Col>
         </Row>
       </div>

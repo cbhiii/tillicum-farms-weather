@@ -14,8 +14,10 @@ class Details extends Component {
         <Row>
           <Col xs={6}>
             <div className="sun">
-              <p><span className="wi wi-sunrise"></span> 07:15 am</p>
-              <p><span className="wi wi-sunset"></span> 08:42 pm</p>
+              <ul>
+                <li><span className="wi wi-sunrise"></span> 07:15am</li>
+                <li><span className="wi wi-sunset"></span> 08:42pm</li>
+              </ul>
             </div>
           </Col>
         </Row>

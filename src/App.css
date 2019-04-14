@@ -1,6 +1,8 @@
 .App {
   text-align: center;
-  background-color: #D9D6CB;
+  /* background-color: #D9D6CB; */
+  background-color: #E5E7D6;
+  font-weight: bold;
 }
 
 .App-header {
@@ -15,9 +17,19 @@
 
 }
 
+ul {
+  padding: 10px;
+}
+
+ul,
+li {
+  margin: 0;
+  list-style-type: none;
+}
+
 .Header {
-  font-size: 1.3em;
-  font-weight: bold;
+  font-size: 1.5em;
+  border-bottom: 1px solid black;
 }
 
 .header-left {
@@ -29,11 +41,11 @@
 }
 
 .Current {
-
+  border-bottom: 1px solid black;
 }
 
 .temp {
-  padding-top: 20px;
+  padding-top: 0;
   padding-bottom: 10px;
 }
 
@@ -52,31 +64,35 @@
 .weather {
   font-size: 1.1em;
   position: relative;
+
   /* shift down weather icon for centering */
-  top: 20px;
-  padding: 10px;
+  top: 25px;
+
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
 }
 
 .weather-text {
   font-size: 1em;
-  font-weight: bold;
 }
 
 .Details {
-
+  border-bottom: 1px solid black;
 }
 
 .sun {
   font-size: 1.1em;
-  font-weight: bold;
   text-align: left;
 }
 
+.temp {
+  top: 10px;
+}
 
 .Camera {
-
+  border-bottom: 1px solid black;
 }
 
 .Forecast {
-
+  border-bottom: 1px solid black;
 }

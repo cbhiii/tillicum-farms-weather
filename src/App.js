@@ -64,8 +64,8 @@ class App extends Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <Details>
-              </Details>
+              <Forecast>
+              </Forecast>
             </Col>
           </Row>
           <Row>
@@ -76,8 +76,8 @@ class App extends Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <Forecast>
-              </Forecast>
+              <Details>
+              </Details>
             </Col>
           </Row>
         </Grid>
