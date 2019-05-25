@@ -3,6 +3,7 @@
 
 import React, { Component } from 'react';
 import { Row, Col } from 'react-flexbox-grid';
+import ellie from './assets/Ellie_300-small.jpg';
 
 class Camera extends Component {
 
@@ -12,6 +13,9 @@ class Camera extends Component {
 
       <div className="Camera">
         Camera
+        <div>
+          <img src={ellie} alt="-"></img>
+        </div>
       </div>
 
     );

@@ -96,3 +96,7 @@ li {
 .Forecast {
   border-bottom: 1px solid black;
 }
+
+.forecast-text {
+  font-size: 0.8em;
+}
