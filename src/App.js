@@ -13,9 +13,9 @@ import Details from './Details'
 import Camera from './Camera'
 import Forecast from './Forecast'
 
-const forecastData = 'https://api.weather.gov/gridpoints/GRR/46,52/forecast';
-const hourlyForecastData = 'https://api.weather.gov/gridpoints/GRR/46,52/forecast/hourly';
-const alertData = 'https://api.weather.gov/alerts/active?point=43.0948,-85.4676';
+const forecastURL = 'https://api.weather.gov/gridpoints/GRR/46,52/forecast';
+const hourlyForecastURL = 'https://api.weather.gov/gridpoints/GRR/46,52/forecast/hourly';
+const alertURL = 'https://api.weather.gov/alerts/active?point=43.0948,-85.4676';
 
 class App extends Component {
 
@@ -31,7 +31,8 @@ class App extends Component {
     year1: [],
     forecast: [],
     hourlyForecast: [],
-    alerts: []
+    alerts: [],
+    temp: '111'
   }
 
   updateLocal = () => {
@@ -42,35 +43,35 @@ class App extends Component {
       .then((response) => response.text())
       .then(xml => {
         result = convert.xml2json(xml, {compact: true, spaces: 4});
-        this.setState(state => {
-          allData = JSON.parse(result)
-          state.actual = allData.meteohub.data[0]
-          state.alltime = allData.meteohub.data[1]
-          state.day1 = allData.meteohub.data[2]
-          state.hour1 = allData.meteohub.data[3]
-          state.last15m = allData.meteohub.data[4]
-          state.last24h = allData.meteohub.data[5]
-          state.last60m = allData.meteohub.data[6]
-          state.month1 = allData.meteohub.data[7]
-          state.year1 = allData.meteohub.data[8]
+        allData = JSON.parse(result);
+        this.setState({
+          actual: allData.meteohub.data[0],
+          alltime: allData.meteohub.data[1],
+          day1: allData.meteohub.data[2],
+          hour1: allData.meteohub.data[3],
+          last15m: allData.meteohub.data[4],
+          last24h: allData.meteohub.data[5],
+          last60m: allData.meteohub.data[6],
+          month1: allData.meteohub.data[7],
+          year1: allData.meteohub.data[8]
         },
           // () => {
           //  console.log(this.state)
           // }
-        )
+        );
     })
     .catch(err => console.log("Error getting and/or processing local weather data file: ",err))
   }
 
   updateNWS = () => {
     // Get current forecast data from the NWS
-    fetch(forecastData)
+    fetch(forecastURL)
     .then(response => {
       return response.json()
     })
     .then(data => {
-      this.setState(state => {
-        state.forecast = data.properties
+      this.setState({
+        forecast: data.properties
       },
         // () => {
         //  console.log(this.state)
@@ -79,13 +80,13 @@ class App extends Component {
     })
     .catch(err => console.log("Error getting and/or processing NWS forecast data: ",err))
 
-    fetch(hourlyForecastData)
+    fetch(hourlyForecastURL)
     .then(response => {
       return response.json()
     })
     .then(data => {
-      this.setState(state => {
-        state.hourlyForecast = data.properties
+      this.setState({
+        hourlyForecast: data.properties
       },
         // () => {
         //  console.log(this.state)
@@ -94,13 +95,14 @@ class App extends Component {
     })
     .catch(err => console.log("Error getting and/or processing NWS hourly data: ",err))
 
-    fetch(alertData)
+    fetch(alertURL)
     .then(response => {
       return response.json()
     })
     .then(data => {
-      this.setState(state => {
-        state.alerts = data
+      this.setState({
+        alerts: data,
+        temp: '75'
       },
         // () => {
         //  console.log(this.state)
@@ -111,7 +113,7 @@ class App extends Component {
 
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.updateLocal()
     this.updateNWS()
   }
@@ -132,7 +134,7 @@ class App extends Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <Current>
+              <Current temp={this.state.temp}>
               </Current>
             </Col>
           </Row>
