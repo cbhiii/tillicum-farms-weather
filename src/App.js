@@ -6,7 +6,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import convert from 'xml-js';
 import './App.css';
 import './assets/weather-icons.css';
-import stationData from './data/data.xml';
+import localData from './data/data.txt';
 import Header from './Header'
 import Current from './Current'
 import Details from './Details'
@@ -20,47 +20,36 @@ const alertURL = 'https://api.weather.gov/alerts/active?point=43.0948,-85.4676';
 class App extends Component {
 
   state = {
-    actual: [],
-    alltime: [],
-    day1: [],
-    hour1: [],
-    last15m: [],
-    last24h: [],
-    last60m: [],
-    month1: [],
-    year1: [],
+    local: [],
     forecast: [],
     hourlyForecast: [],
     alerts: [],
-    temp: '111'
   }
 
   updateLocal = () => {
-    let result = {};
-    let allData = [];
+    let results = [];
+    let allData = {};
 
-    fetch(stationData)
+    fetch(localData)
       .then((response) => response.text())
-      .then(xml => {
-        result = convert.xml2json(xml, {compact: true, spaces: 4});
-        allData = JSON.parse(result);
+      .then(data => {
+
+        results = data.split('\n')
+
+        for (const result of results) {
+          let obj = result.split(" ");
+          allData[obj[0]] = obj[1];
+        }
+
         this.setState({
-          actual: allData.meteohub.data[0],
-          alltime: allData.meteohub.data[1],
-          day1: allData.meteohub.data[2],
-          hour1: allData.meteohub.data[3],
-          last15m: allData.meteohub.data[4],
-          last24h: allData.meteohub.data[5],
-          last60m: allData.meteohub.data[6],
-          month1: allData.meteohub.data[7],
-          year1: allData.meteohub.data[8]
+          local: allData
         },
           // () => {
           //  console.log(this.state)
           // }
         );
-    })
-    .catch(err => console.log("Error getting and/or processing local weather data file: ",err))
+      })
+    .catch(err => console.error("Error getting and/or processing local weather data text file: ",err))
   }
 
   updateNWS = () => {
@@ -78,7 +67,7 @@ class App extends Component {
         // }
       )
     })
-    .catch(err => console.log("Error getting and/or processing NWS forecast data: ",err))
+    .catch(err => console.error("Error getting and/or processing NWS forecast data: ",err))
 
     fetch(hourlyForecastURL)
     .then(response => {
@@ -93,7 +82,7 @@ class App extends Component {
         // }
       )
     })
-    .catch(err => console.log("Error getting and/or processing NWS hourly data: ",err))
+    .catch(err => console.error("Error getting and/or processing NWS hourly data: ",err))
 
     fetch(alertURL)
     .then(response => {
@@ -109,7 +98,7 @@ class App extends Component {
         // }
       )
     })
-    .catch(err => console.log("Error getting and/or processing NWS alert data: ",err))
+    .catch(err => console.error("Error getting and/or processing NWS alert data: ",err))
 
   }
 
@@ -120,7 +109,7 @@ class App extends Component {
 
   render() {
 
-    console.log(this.state);
+    // console.log("Render",this.state);
 
     return (
 
