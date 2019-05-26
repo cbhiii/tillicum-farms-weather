@@ -123,7 +123,7 @@ class App extends Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <Current temp={this.state.temp}>
+              <Current temp={this.state.local.actual_th0_temp_f}>
               </Current>
             </Col>
           </Row>

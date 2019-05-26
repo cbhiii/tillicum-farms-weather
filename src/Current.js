@@ -14,7 +14,7 @@ class Current extends Component {
         <Row>
           <Col xs={6}>
             <div className="temp">
-              <span className="big-temp">{this.props.temp}</span>
+              <span className="big-temp">{Math.round(this.props.temp)}&deg;</span>
               <p className="hilo-temp"><span className="wi wi-direction-up"></span> 83º <span className="wi wi-direction-down"></span> 54º</p>
             </div>
           </Col>
