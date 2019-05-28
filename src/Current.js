@@ -8,20 +8,30 @@ class Current extends Component {
 
   render() {
 
+    const { t, nexthr, cond } = this.props;
+
     return (
 
       <div className="Current">
         <Row>
-          <Col xs={6}>
-            <div className="temp">
-              <span className="big-temp">{Math.round(this.props.temp)}&deg;</span>
-              <p className="hilo-temp"><span className="wi wi-direction-up"></span> 83º <span className="wi wi-direction-down"></span> 54º</p>
+
+          <Col xs={4}>
+            <div className="weather">
+              <span className="big-temp wi wi-day-thunderstorm"></span>
+              {cond}
             </div>
           </Col>
 
-          <Col xs={6}>
+          <Col xs={4}>
+            <div className="temp">
+              <span className="big-temp">{t}°</span>
+              <p className="hilo-temp"><span className="wi wi-direction-up"></span> 83° <span className="wi wi-direction-down"></span> 54°</p>
+            </div>
+          </Col>
+
+          <Col xs={4}>
             <div className="weather">
-              <span className="big-temp wi wi-day-thunderstorm"></span>
+              {this.props.nexthr}
             </div>
           </Col>
         </Row>

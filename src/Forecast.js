@@ -13,7 +13,10 @@ class Forecast extends Component {
       <div className="Forecast">
         Forecast
         <div className="forecast-text">
-          Partly cloudy with showers later
+          {this.props.fshort}
+        </div>
+        <div className="forecast-text">
+          {this.props.fperiod}: {this.props.flong}
         </div>
       </div>
 
