@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import './App.css';
 import './assets/weather-icons.css';
+import './assets/weather-icons-wind.css';
 import localData from './data/data.txt';
 import Header from './Header'
 import Current from './Current'
@@ -45,18 +46,24 @@ class App extends Component {
       flong0: '-',
       fshort0: '-',
       fperiod0: '-',
+      fIsDay0: false,
       ftemp0: '-',
       fwind0: '-',
+      fwindd0: '-',
       flong1: '-',
       fshort1: '-',
       fperiod1: '-',
+      fIsDay1: false,
       ftemp1: '-',
       fwind1: '-',
+      fwindd1: '-',
       flong2: '-',
       fshort2: '-',
       fperiod2: '-',
+      fIsDay2: false,
       ftemp2: '-',
       fwind2: '-',
+      fwindd2: '-',
     }
   }
 
@@ -144,20 +151,26 @@ class App extends Component {
       this.setState(state => {
         state.wx = {...state.wx, ...{
           fperiod0: data.properties.periods[0].name,
+          fIsDay0: data.properties.periods[0].isDaytime,
           fshort0: data.properties.periods[0].shortForecast,
           flong0: data.properties.periods[0].detailedForecast,
           ftemp0: data.properties.periods[0].temperature,
-          fwind0: data.properties.periods[0].windDirection+" "+data.properties.periods[0].windSpeed,
+          fwindd0: data.properties.periods[0].windDirection.toLowerCase(),
+          fwind0: data.properties.periods[0].windSpeed,
           fperiod1: data.properties.periods[1].name,
+          fIsDay1: data.properties.periods[1].isDaytime,
           fshort1: data.properties.periods[1].shortForecast,
           flong1: data.properties.periods[1].detailedForecast,
           ftemp1: data.properties.periods[1].temperature,
-          fwind1: data.properties.periods[1].windDirection+" "+data.properties.periods[1].windSpeed,
+          fwindd1: data.properties.periods[1].windDirection.toLowerCase(),
+          fwind1: data.properties.periods[1].windSpeed,
           fperiod2: data.properties.periods[2].name,
+          fIsDay2: data.properties.periods[2].isDaytime,
           fshort2: data.properties.periods[2].shortForecast,
           flong2: data.properties.periods[2].detailedForecast,
           ftemp2: data.properties.periods[2].temperature,
-          fwind2: data.properties.periods[2].windDirection+" "+data.properties.periods[2].windSpeed,
+          fwindd2: data.properties.periods[2].windDirection.toLowerCase(),
+          fwind2: data.properties.periods[2].windSpeed,
         }};
       },
         // () => {
@@ -261,20 +274,26 @@ class App extends Component {
               <Col xs={12}>
                 <Forecast
                   fperiod0={wx.fperiod0}
+                  fIsDay0={wx.fIsDay0}
                   fshort0={wx.fshort0}
                   flong0={wx.flong0}
                   ftemp0={wx.ftemp0}
                   fwind0={wx.fwind0}
+                  fwindd0={wx.fwindd0}
                   fperiod1={wx.fperiod1}
+                  fIsDay1={wx.fIsDay1}
                   fshort1={wx.fshort1}
                   flong1={wx.flong1}
                   ftemp1={wx.ftemp1}
                   fwind1={wx.fwind1}
+                  fwindd1={wx.fwindd1}
                   fperiod2={wx.fperiod2}
+                  fIsDay2={wx.fIsDay2}
                   fshort2={wx.fshort2}
                   flong2={wx.flong2}
                   ftemp2={wx.ftemp2}
                   fwind2={wx.fwind2}
+                  fwindd2={wx.fwindd2}
                 >
                 </Forecast>
               </Col>

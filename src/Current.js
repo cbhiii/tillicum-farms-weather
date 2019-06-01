@@ -6,9 +6,13 @@ import { Row, Col } from 'react-flexbox-grid';
 
 class Current extends Component {
 
+
+
+
   render() {
 
     const { t, nexthr, cond } = this.props;
+
 
     return (
 
@@ -17,7 +21,8 @@ class Current extends Component {
         <Row>
           <Col xs={4}>
             <div className="weather">
-              <span className="big-temp wi wi-day-thunderstorm"></span>
+            <span className="big-temp wi wi-day-thunderstorm"></span>
+            <span className="wi wi-wind wi-from-e"></span>
               <p>{cond}</p>
             </div>
           </Col>
