@@ -13,19 +13,20 @@ class Current extends Component {
     return (
 
       <div className="Current">
+      Currently
         <Row>
-
           <Col xs={4}>
             <div className="weather">
               <span className="big-temp wi wi-day-thunderstorm"></span>
-              {cond}
+              <p>{cond}</p>
             </div>
           </Col>
 
           <Col xs={4}>
             <div className="temp">
               <span className="big-temp">{t}°</span>
-              <p className="hilo-temp"><span className="wi wi-direction-up"></span> 83° <span className="wi wi-direction-down"></span> 54°</p>
+{              // <span className="small">Since midnight</span>
+}              <p className="hilo-temp"><span className="wi wi-direction-up"></span> 83° <span className="wi wi-direction-down"></span> 54°</p>
             </div>
           </Col>
 

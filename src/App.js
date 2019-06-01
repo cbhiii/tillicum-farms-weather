@@ -22,42 +22,42 @@ const alertURL = 'https://api.weather.gov/alerts/active?point=43.0948,-85.4676';
 class App extends Component {
 
   state = {
-    alerts: []
-  }
-
-  //
-  // initialize variables used
-  //
-  initVar = () => {
-    this.setState(state => {
-      state.wx = {
-        cond: '-',
-        t: '-',
-        tmax: '-',
-        tmin: '-',
-        hi: '-',
-        himax: '-',
-        wc: '-',
-        wcmin: '-',
-        dew: '-',
-        hum: '-',
-        w: '-',
-        wdir: '-',
-        wgust: '-',
-        r: '-',
-        rr: '-',
-        uv: '-',
-        uvmax: '-',
-        nexthr: '-',
-        flong: '-',
-        fshort: '-',
-        fperiod: '-'
-      }
-    },
-      // () => {
-      //  console.log(this.state)
-      // }
-    );
+    alerts: [],
+    wx: {
+      cond: '-',
+      t: '-',
+      tmax: '-',
+      tmin: '-',
+      hi: '-',
+      himax: '-',
+      wc: '-',
+      wcmin: '-',
+      dew: '-',
+      hum: '-',
+      w: '-',
+      wdir: '-',
+      wgust: '-',
+      r: '-',
+      rr: '-',
+      uv: '-',
+      uvmax: '-',
+      nexthr: '-',
+      flong0: '-',
+      fshort0: '-',
+      fperiod0: '-',
+      ftemp0: '-',
+      fwind0: '-',
+      flong1: '-',
+      fshort1: '-',
+      fperiod1: '-',
+      ftemp1: '-',
+      fwind1: '-',
+      flong2: '-',
+      fshort2: '-',
+      fperiod2: '-',
+      ftemp2: '-',
+      fwind2: '-',
+    }
   }
 
   //
@@ -66,10 +66,6 @@ class App extends Component {
   updateWX = () => {
     let results = {};
     let l = {};
-    let hourly = {};
-    let current = {};
-    let forecast = {};
-    let alerts = {};
 
     //
     // get local station data
@@ -147,9 +143,21 @@ class App extends Component {
     .then(data => {
       this.setState(state => {
         state.wx = {...state.wx, ...{
-          fperiod: data.properties.periods[0].name,
-          fshort: data.properties.periods[0].shortForecast,
-          flong: data.properties.periods[0].detailedForecast
+          fperiod0: data.properties.periods[0].name,
+          fshort0: data.properties.periods[0].shortForecast,
+          flong0: data.properties.periods[0].detailedForecast,
+          ftemp0: data.properties.periods[0].temperature,
+          fwind0: data.properties.periods[0].windDirection+" "+data.properties.periods[0].windSpeed,
+          fperiod1: data.properties.periods[1].name,
+          fshort1: data.properties.periods[1].shortForecast,
+          flong1: data.properties.periods[1].detailedForecast,
+          ftemp1: data.properties.periods[1].temperature,
+          fwind1: data.properties.periods[1].windDirection+" "+data.properties.periods[1].windSpeed,
+          fperiod2: data.properties.periods[2].name,
+          fshort2: data.properties.periods[2].shortForecast,
+          flong2: data.properties.periods[2].detailedForecast,
+          ftemp2: data.properties.periods[2].temperature,
+          fwind2: data.properties.periods[2].windDirection+" "+data.properties.periods[2].windSpeed,
         }};
       },
         // () => {
@@ -198,10 +206,6 @@ class App extends Component {
     .catch(err => console.error("Error getting and/or processing NWS alert data: ",err))
   }
 
-  componentWillMount() {
-    this.initVar()
-  }
-
   componentDidMount() {
     this.updateWX()
   }
@@ -212,67 +216,85 @@ class App extends Component {
 
     const { wx } = this.state;
 
-    return (
-
-      <div className="App">
-        <Grid fluid>
-          <Row>
-            <Col xs={12}>
-              <Header>
-              </Header>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <Current
-                cond={wx.cond}
-                nexthr={wx.nexthr}
-                t={wx.t}
-                tmax={wx.tmax}
-                tmin={wx.tmin}
-                hi={wx.hi}
-                himax={wx.himax}
-                wc={wx.wc}
-                wcmin={wx.wcmin}
-                dew={wx.dew}
-                hum={wx.hum}
-                w={wx.w}
-                wdir={wx.wdir}
-                wgust={wx.wgust}
-                r={wx.r}
-                rr={wx.rr}
-                uv={wx.uv}
-                uvmax={wx.uvmax}
-              >
-              </Current>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <Forecast
-                fperiod={wx.fperiod}
-                fshort={wx.fshort}
-                flong={wx.flong}
-              >
-              </Forecast>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <Details>
-              </Details>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <Camera>
-              </Camera>
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-
-    );
+    if (wx.t === "-") {
+      return (
+        <div className="App">
+          Waiting for weather data retrieval ...
+        </div>
+      )
+    } else {
+      return (
+        <div className="App">
+          <Grid fluid>
+            <Row>
+              <Col xs={12}>
+                <Header>
+                </Header>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <Current
+                  cond={wx.cond}
+                  nexthr={wx.nexthr}
+                  t={wx.t}
+                  tmax={wx.tmax}
+                  tmin={wx.tmin}
+                  hi={wx.hi}
+                  himax={wx.himax}
+                  wc={wx.wc}
+                  wcmin={wx.wcmin}
+                  dew={wx.dew}
+                  hum={wx.hum}
+                  w={wx.w}
+                  wdir={wx.wdir}
+                  wgust={wx.wgust}
+                  r={wx.r}
+                  rr={wx.rr}
+                  uv={wx.uv}
+                  uvmax={wx.uvmax}
+                >
+                </Current>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <Forecast
+                  fperiod0={wx.fperiod0}
+                  fshort0={wx.fshort0}
+                  flong0={wx.flong0}
+                  ftemp0={wx.ftemp0}
+                  fwind0={wx.fwind0}
+                  fperiod1={wx.fperiod1}
+                  fshort1={wx.fshort1}
+                  flong1={wx.flong1}
+                  ftemp1={wx.ftemp1}
+                  fwind1={wx.fwind1}
+                  fperiod2={wx.fperiod2}
+                  fshort2={wx.fshort2}
+                  flong2={wx.flong2}
+                  ftemp2={wx.ftemp2}
+                  fwind2={wx.fwind2}
+                >
+                </Forecast>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <Details>
+                </Details>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <Camera>
+                </Camera>
+              </Col>
+            </Row>
+          </Grid>
+        </div>
+      )
+    }
   }
 }
 

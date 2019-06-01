@@ -12,12 +12,26 @@ class Forecast extends Component {
 
       <div className="Forecast">
         Forecast
-        <div className="forecast-text">
-          {this.props.fshort}
-        </div>
-        <div className="forecast-text">
-          {this.props.fperiod}: {this.props.flong}
-        </div>
+        <Row className="forecast-text">
+          <Col xs={4}>
+            <span className="fperiod">{this.props.fperiod0}</span><br />
+            <span className="forecast"> {this.props.fshort0}<br />{
+              this.props.fperiod0==='Tonight' ? 'Low: ' : 'High: '
+            }{this.props.ftemp0}°<br />Winds: {this.props.fwind0}</span>
+          </Col>
+          <Col xs={4}>
+            <span className="fperiod">{this.props.fperiod1}</span><br />
+            <span className="forecast"> {this.props.fshort1}<br />{
+              this.props.fperiod1==='Tonight' ? 'Low: ' : 'High: '
+            }{this.props.ftemp1}°<br />Winds: {this.props.fwind1}</span>
+          </Col>
+          <Col xs={4}>
+            <span className="fperiod">{this.props.fperiod2}</span><br />
+            <span className="forecast"> {this.props.fshort2}<br/>{
+              this.props.fperiod2==='Tonight' ? 'Low: ' : 'High: '
+            }{this.props.ftemp2}°<br />Winds: {this.props.fwind2}</span>
+          </Col>
+        </Row>
       </div>
 
     );
