@@ -131,7 +131,7 @@ class App extends Component {
             dlen: l.actual_daylength_standard_hhmm,
             mrise: l.actual_moonrise_standard_local,
             mset: l.actual_moonset_standard_local,
-            mphase: l.actual_lunar_phase_en
+            mphase: Math.round(l.actual_lunar_phase_percentage)
 
           }}
         },

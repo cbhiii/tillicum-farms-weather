@@ -96,7 +96,7 @@ class Current extends Component {
           displaycond = 'wi-night-clear';
           break;
         default:
-          displaycond = 'wi-na';
+          displaycond = 'wi-alien';
       }
     }
 
@@ -107,24 +107,24 @@ class Current extends Component {
         <Row>
           <Col xs={4}>
             <div className="weather">
-              <span className={`big-temp wi ${displaycond}`}></span>
-                <p>{this.props.cond}</p>
+              <span className={`big wi ${displaycond}`}></span>
+                <div className="med">{this.props.cond}</div>
             </div>
           </Col>
 
           <Col xs={4}>
             <div className="temp">
               <div>
-                <span className="big-temp">{this.props.t}<span className="wi wi-degrees"></span></span>
+                <span className="big">{this.props.t}<span className="wi wi-degrees"></span></span>
               </div>
               {
                 this.props.t > 69 && this.props.hi > this.props.t
-                ? <div>Heat index: {this.props.hi}<span className="wi wi-degrees"></span></div>
+                ? <div className="med">Heat index:<br /><span className="med-big">{this.props.hi}</span><span className="wi wi-degrees"></span></div>
                 : null
               }
               {
                 this.props.t < 50 && this.props.wc < this.props.t
-                ? <div>Wind chill: {this.props.wc}<span className="wi wi-degrees"></span></div>
+                ? <div className="med">Wind chill:<br /><span className="med-big">{this.props.wc}</span><span className="wi wi-degrees"></span></div>
                 : null
               }
             </div>
@@ -171,8 +171,8 @@ class Current extends Component {
                   <div>
                     {this.props.baro+' '}
                     {this.props.barot == 0 && <span className="wi wi-direction-right"></span>}
-                    {this.props.barot > 0 && <span className="wi wi-direction-up-right"></span>}
-                    {this.props.barot < 0 && <span className="wi wi-direction-down-right"></span>}
+                    {this.props.barot > 0 && <span className="wi wi-direction-up"></span>}
+                    {this.props.barot < 0 && <span className="wi wi-direction-down"></span>}
                   </div>
                   <div>
                     {this.props.uv}

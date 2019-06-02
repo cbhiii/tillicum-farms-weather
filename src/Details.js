@@ -11,33 +11,47 @@ class Details extends Component {
     return (
 
       <div className="Details">
-        Details and Limits
+        Sun and Moon
         <Row>
           <Col xs={4}>
-            <div className="sun">
-              <ul>
-                <li><span className="wi wi-sunrise"></span> {this.props.srise}</li>
-                <li><span className="wi wi-sunset"></span> {this.props.sset}</li>
-                <li><span className="wi wi-time-2"></span> {this.props.dlen}</li>
-              </ul>
-            </div>
+            <Row>
+              <Col xs={4}>
+                <div className="weather-center">
+                    <div><span className="wi wi-sunrise"></span></div>
+                    <div><span className="wi wi-sunset"></span></div>
+                    <div><span className="wi wi-time-2"></span></div>
+                </div>
+              </Col>
+              <Col xs={8}>
+                <div className="weather-left">
+                    <div>{this.props.srise}</div>
+                    <div>{this.props.sset}</div>
+                    <div>{this.props.dlen.split(':')[0]}h {this.props.dlen.split(':')[1]}m</div>
+                </div>
+              </Col>
+            </Row>
           </Col>
           <Col xs={4}>
             <div className="sun">
-              <ul>
-                <li><span className="wi wi-horizon-alt"></span> 07:15a</li>
-                <li><span className="wi wi-sunset"></span> 08:42p</li>
-              </ul>
             </div>
           </Col>
           <Col xs={4}>
-            <div className="sun">
-              <ul>
-                <li><span className="wi wi-moonrise"></span> {this.props.mrise}</li>
-                <li><span className="wi wi-moonset"></span> {this.props.mset}</li>
-                <li><span className="wi wi-moon-alt-full"></span> {this.props.mphase}</li>
-              </ul>
-            </div>
+            <Row>
+              <Col xs={3}>
+                <div className="weather-center">
+                    <div><span className="wi wi-moonrise"></span></div>
+                    <div><span className="wi wi-moonset"></span></div>
+                    <div><span className="wi wi-moon-alt-full"></span></div>
+                </div>
+              </Col>
+              <Col xs={9}>
+                <div className="weather-left">
+                    <div>{this.props.mrise}</div>
+                    <div>{this.props.mset}</div>
+                    <div>{this.props.mphase}% full</div>
+                </div>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </div>

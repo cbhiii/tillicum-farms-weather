@@ -49,8 +49,18 @@ li {
   padding-bottom: 10px;
 }
 
-.big-temp {
+.big {
   font-size: 3.5em;
+  font-weight: bold;
+}
+
+.med-big {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.med {
+  font-size: 1.3em;
   font-weight: bold;
 }
 
@@ -66,12 +76,12 @@ li {
 }
 
 .weather-left {
-  font-size: 1em;
+  font-size: 1.2em;
   text-align: left;
 }
 
 .weather-center {
-  font-size: 1em;
+  font-size: 1.2em;
   text-align: center;
 }
 
@@ -96,14 +106,16 @@ li {
   border-bottom: 1px solid black;
 }
 
-.forecast-text {
-  font-size: 1em;
-  text-align: left;
-}
-
 .fperiod {
   /* text-decoration: underline; */
   font-weight: bold;
+  text-align: left;
+  font-size: 1em;
+}
+
+.forecast-text {
+  font-size: 1.1em;
+  text-align: left;
 }
 
 .small {
