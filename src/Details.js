@@ -9,10 +9,14 @@ class Details extends Component {
   render() {
 
     return (
-
+      
       <div className="Details">
         Sun and Moon
         <Row>
+          <Col xs={1}>
+            <div className="sun">
+            </div>
+          </Col>
           <Col xs={4}>
             <Row>
               <Col xs={4}>
@@ -31,7 +35,7 @@ class Details extends Component {
               </Col>
             </Row>
           </Col>
-          <Col xs={4}>
+          <Col xs={2}>
             <div className="sun">
             </div>
           </Col>
@@ -52,6 +56,10 @@ class Details extends Component {
                 </div>
               </Col>
             </Row>
+          </Col>
+          <Col xs={1}>
+            <div className="sun">
+            </div>
           </Col>
         </Row>
       </div>
