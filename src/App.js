@@ -12,13 +12,15 @@ import Current from './Current'
 import Details from './Details'
 import Camera from './Camera'
 import Forecast from './Forecast'
+import Alerts from './Alerts'
 
 // update NWS URLs for local area. More info here:
 // https://forecast-v3.weather.gov/documentation as 2019 05 27
 const currentURL = 'https://api.weather.gov/stations/KGRR/observations/current';
 const forecastURL = 'https://api.weather.gov/gridpoints/GRR/46,52/forecast';
-const hourlyURL = 'https://api.weather.gov/gridpoints/GRR/46,52/forecast/hourly';
+
 const alertURL = 'https://api.weather.gov/alerts/active?point=43.0948,-85.4676';
+// const alertURL = 'https://api.weather.gov/alerts/active/area/MI';
 
 class App extends Component {
 
@@ -27,6 +29,7 @@ class App extends Component {
     wx: {
       cond: '-',
       t: '-',
+      tt: '-',
       tmax: '-',
       tmin: '-',
       hi: '-',
@@ -44,7 +47,6 @@ class App extends Component {
       rr: '-',
       uv: '-',
       uvmax: '-',
-      nexthr: '-',
       flong0: '-',
       fshort0: '-',
       fperiod0: '-',
@@ -72,13 +74,15 @@ class App extends Component {
   //
   // get all weather station data and populate variables
   //
-  updateWX = () => {
+
+
+  //
+  // get local station data
+  //
+  updateLocal = () => {
     let results = {};
     let l = {};
 
-    //
-    // get local station data
-    //
     fetch(localData)
       // get text from fetch
       .then(response => response.text())
@@ -95,6 +99,7 @@ class App extends Component {
         this.setState(state => {
           state.wx = {...state.wx, ...{
             t: Math.round(l.actual_th0_temp_f),
+            tt: l.hour1_th0_temp_trend,
             tmax: Math.round(l.day1_th0_tempmax_f),
             tmin: Math.round(l.day1_th0_tempmin_f),
             hi: Math.round(l.actual_th0_heatindex_f),
@@ -104,7 +109,7 @@ class App extends Component {
             dew: Math.round(l.actual_th0_dew_f),
             hum: l.actual_th0_hum_rel,
             w: Math.round(l.actual_wind0_speed_mph),
-            wdir: l.actual_wind0_dir_en,
+            wdir: l.actual_wind0_dir_en.toLowerCase(),
             wgust: Math.round(l.last15m_wind0_gustspeedmax_mph),
             r: l.day1_rain0_total_in,
             rr: l.actual_rain0_rate_in,
@@ -121,9 +126,15 @@ class App extends Component {
       })
     // catch and display any errors
     .catch(err => console.error("Error getting and/or processing local weather data text file: ",err))
+  }
+
+  //
+  // get weather data from NWS
+  //
+  updateNWS = () => {
 
     //
-    // get current weather from NWS
+    // get current weather condition
     //
     fetch(currentURL)
     .then(response => {
@@ -183,37 +194,19 @@ class App extends Component {
       )
     })
     .catch(err => console.error("Error getting and/or processing NWS forecast data: ",err))
+  }
 
-    //
-    // get hourly forecast from NWS
-    //
-    fetch(hourlyURL)
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
-      this.setState(state => {
-        state.wx = {...state.wx, ...{
-          nexthr: data.properties.periods[1].shortForecast,
-        }};
-      },
-        // () => {
-        //  console.log(this.state)
-        // }
-      )
-    })
-    .catch(err => console.error("Error getting and/or processing NWS hourly data: ",err))
-
-    //
-    // get weather alerts from NWS
-    //
+  //
+  // get weather alerts from NWS
+  //
+  updateAlerts = () => {
     fetch(alertURL)
     .then(response => {
       return response.json()
     })
     .then(data => {
       this.setState({
-        alerts: data,
+        alerts: data.features,
       },
         // () => {
         //  console.log(this.state)
@@ -224,14 +217,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.updateWX()
+    this.updateLocal()
+    this.updateNWS()
+    this.updateAlerts()
   }
 
   render() {
 
     // console.log("Render",this.state);
 
-    const { wx } = this.state;
+    const { wx, alerts } = this.state;
 
     // if (wx.t === "-") {
     //   return (
@@ -251,10 +246,18 @@ class App extends Component {
             </Row>
             <Row>
               <Col xs={12}>
+                <Alerts
+                  alerts={alerts}
+                >
+                </Alerts>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
                 <Current
                   cond={wx.cond}
-                  nexthr={wx.nexthr}
                   t={wx.t}
+                  tt={wx.tt}
                   tmax={wx.tmax}
                   tmin={wx.tmin}
                   hi={wx.hi}

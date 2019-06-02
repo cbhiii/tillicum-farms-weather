@@ -62,25 +62,17 @@ li {
 }
 
 .weather {
-  font-size: 1.0em;
-  position: relative;
-
-  /* shift down weather icon for centering */
-  /* top: 25px; */
-
-  /* padding-top: 10px;
-  padding-bottom: 10px; */
+  font-size: 1em;
 }
 
 .weather-left {
-  font-size: 0.9em;
+  font-size: 1em;
   text-align: left;
+}
 
-  /* shift down weather icon for centering */
-  /* top: 25px; */
-
-  /* padding-top: 10px;
-  padding-bottom: 10px; */
+.weather-center {
+  font-size: 1em;
+  text-align: center;
 }
 
 .weather-text {
@@ -116,4 +108,10 @@ li {
 
 .small {
   font-size: 0.8em;
+}
+
+.Alerts {
+  border-bottom: 1px solid black;
+  background: red;
+  color: white;
 }
