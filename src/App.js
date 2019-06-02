@@ -229,13 +229,13 @@ class App extends Component {
 
     const { wx } = this.state;
 
-    if (wx.t === "-") {
-      return (
-        <div className="App">
-          Waiting for weather data retrieval ...
-        </div>
-      )
-    } else {
+    // if (wx.t === "-") {
+    //   return (
+    //     <div className="App">
+    //       Waiting for weather data retrieval ...
+    //     </div>
+    //   )
+    // } else {
       return (
         <div className="App">
           <Grid fluid>
@@ -313,7 +313,7 @@ class App extends Component {
           </Grid>
         </div>
       )
-    }
+    // }
   }
 }
 

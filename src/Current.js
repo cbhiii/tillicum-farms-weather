@@ -22,22 +22,33 @@ class Current extends Component {
           <Col xs={4}>
             <div className="weather">
             <span className="big-temp wi wi-day-thunderstorm"></span>
-            <span className="wi wi-wind wi-from-e"></span>
               <p>{cond}</p>
             </div>
           </Col>
 
           <Col xs={4}>
             <div className="temp">
-              <span className="big-temp">{t}°</span>
-{              // <span className="small">Since midnight</span>
-}              <p className="hilo-temp"><span className="wi wi-direction-up"></span> 83° <span className="wi wi-direction-down"></span> 54°</p>
+              <div><span className="big-temp">{t}<span className="wi wi-degrees"></span></span></div>
+              {
+                this.props.t > 69 && this.props.hi > this.props.t
+                ? <div>Heat index: {this.props.hi}<span className="wi wi-degrees"></span></div>
+                : null
+              }
+              {
+                this.props.t < 50 && this.props.wc < this.props.t
+                ? <div>Wind chill: {this.props.wc}<span className="wi wi-degrees"></span></div>
+                : null
+              }
             </div>
           </Col>
 
           <Col xs={4}>
-            <div className="weather">
-              {this.props.nexthr}
+            <div className="weather-left">
+              <div>Winds: {this.props.wdir} {this.props.w} (G {this.props.wgust})</div>
+              <div>Humidity: {this.props.hum}%</div>
+              <div>UV: {this.props.uv}</div>
+              <div>Rain total: {this.props.r} in</div>
+              <div>Rain rate: {this.props.rr} in/h</div>
             </div>
           </Col>
         </Row>

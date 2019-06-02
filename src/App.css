@@ -47,9 +47,6 @@ li {
 .temp {
   padding-top: 0;
   padding-bottom: 10px;
-  /* - - - - - - - - - - - - - - - - - - - - - - - - */
-  border: 1px solid blue;      /* TODO: remove later */
-
 }
 
 .big-temp {
@@ -65,8 +62,19 @@ li {
 }
 
 .weather {
-  font-size: 1.1em;
+  font-size: 1.0em;
   position: relative;
+
+  /* shift down weather icon for centering */
+  /* top: 25px; */
+
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
+}
+
+.weather-left {
+  font-size: 0.9em;
+  text-align: left;
 
   /* shift down weather icon for centering */
   /* top: 25px; */
@@ -86,9 +94,6 @@ li {
 .sun {
   font-size: 1.2em;
   text-align: left;
-
-  /* - - - - - - - - - - - - - - - - - - - - - - - - */
-  border: 1px solid blue;      /* TODO: remove later */
 }
 
 .Camera {
