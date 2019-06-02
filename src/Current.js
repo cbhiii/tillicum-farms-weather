@@ -44,11 +44,24 @@ class Current extends Component {
 
           <Col xs={4}>
             <div className="weather-left">
-              <div>Winds: {this.props.wdir} {this.props.w} (G {this.props.wgust})</div>
-              <div>Humidity: {this.props.hum}%</div>
-              <div>UV: {this.props.uv}</div>
-              <div>Rain total: {this.props.r} in</div>
-              <div>Rain rate: {this.props.rr} in/h</div>
+              <div>
+                <span className="wi wi-strong-wind"></span> {this.props.wdir} {this.props.w} (G {this.props.wgust})
+              </div>
+              <div>
+                <span className="wi wi-humidity"></span> {this.props.hum}%
+              </div>
+              <div>
+                <span className="wi wi-raindrop"></span> {this.props.r} in
+              </div>
+              <div>
+                <span className="wi wi-umbrella"></span> {this.props.rr} in/h
+              </div>
+              <div>
+                <span className="wi wi-barometer"></span> {this.props.baro+' '}
+                {this.props.barot == 0 && <span className="wi wi-direction-right"></span>}
+                {this.props.barot > 0 && <span className="wi wi-direction-up"></span>}
+                {this.props.barot < 0 && <span className="wi wi-direction-down"></span>}
+              </div>
             </div>
           </Col>
         </Row>
@@ -57,5 +70,7 @@ class Current extends Component {
     );
   }
 }
+
+
 
 export default Current;

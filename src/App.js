@@ -38,6 +38,8 @@ class App extends Component {
       w: '-',
       wdir: '-',
       wgust: '-',
+      baro: '-',
+      barot: '-',
       r: '-',
       rr: '-',
       uv: '-',
@@ -107,7 +109,9 @@ class App extends Component {
             r: l.day1_rain0_total_in,
             rr: l.actual_rain0_rate_in,
             uv: Math.round(l.actual_uv0_index),
-            uvmax: Math.round(l.day1_uv0_indexmax)
+            uvmax: Math.round(l.day1_uv0_indexmax),
+            baro: l.actual_thb0_sealevel_inhg,
+            barot: l.hour1_thb0_press_trend
           }}
         },
           // () => {
@@ -266,6 +270,8 @@ class App extends Component {
                   rr={wx.rr}
                   uv={wx.uv}
                   uvmax={wx.uvmax}
+                  baro={wx.baro}
+                  barot={wx.barot}
                 >
                 </Current>
               </Col>
