@@ -18,8 +18,8 @@ import Alerts from './Alerts'
 // https://forecast-v3.weather.gov/documentation as 2019 05 27
 const currentURL = 'https://api.weather.gov/stations/KGRR/observations/current';
 const forecastURL = 'https://api.weather.gov/gridpoints/GRR/46,52/forecast';
-
 const alertURL = 'https://api.weather.gov/alerts/active?point=43.0948,-85.4676';
+// for testing of alerts when none present from above URL
 // const alertURL = 'https://api.weather.gov/alerts/active/area/MI';
 
 class App extends Component {
@@ -28,6 +28,7 @@ class App extends Component {
     alerts: [],
     wx: {
       cond: '-',
+      condt: '-',
       t: '-',
       tt: '-',
       tmax: '-',
@@ -47,6 +48,13 @@ class App extends Component {
       rr: '-',
       uv: '-',
       uvmax: '-',
+      tnow: '0:0',
+      srise: '0:0',
+      sset: '0:0',
+      dlen: '0:0',
+      mrise: '0:0',
+      mset: '0:0',
+      mphase: '-',
       flong0: '-',
       fshort0: '-',
       fperiod0: '-',
@@ -116,7 +124,15 @@ class App extends Component {
             uv: Math.round(l.actual_uv0_index),
             uvmax: Math.round(l.day1_uv0_indexmax),
             baro: l.actual_thb0_sealevel_inhg,
-            barot: l.hour1_thb0_press_trend
+            barot: l.hour1_thb0_press_trend,
+            tnow: l.actual_date0_hour_local+':'+l.actual_date0_min_local,
+            srise: l.actual_sunrise_standard_local,
+            sset: l.actual_sunset_standard_local,
+            dlen: l.actual_daylength_standard_hhmm,
+            mrise: l.actual_moonrise_standard_local,
+            mset: l.actual_moonset_standard_local,
+            mphase: l.actual_lunar_phase_en
+
           }}
         },
           // () => {
@@ -144,7 +160,8 @@ class App extends Component {
     .then(data => {
       this.setState( state => {
         state.wx = {...state.wx, ...{
-          cond: data.properties.textDescription
+          cond: data.properties.textDescription,
+          condt: data.properties.timestamp
         }};
       },
         // () => {
@@ -256,6 +273,9 @@ class App extends Component {
               <Col xs={12}>
                 <Current
                   cond={wx.cond}
+                  tnow={wx.tnow}
+                  trise={wx.srise}
+                  tset={wx.sset}
                   t={wx.t}
                   tt={wx.tt}
                   tmax={wx.tmax}
@@ -309,7 +329,14 @@ class App extends Component {
             </Row>
             <Row>
               <Col xs={12}>
-                <Details>
+                <Details
+                  srise={wx.srise}
+                  sset={wx.sset}
+                  dlen={wx.dlen}
+                  mrise={wx.mrise}
+                  mset={wx.mset}
+                  mphase={wx.mphase}
+                >
                 </Details>
               </Col>
             </Row>
